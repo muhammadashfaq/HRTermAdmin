@@ -67,7 +67,7 @@ public class Calllogs extends AppCompatActivity {
                 try {
                     Thread.sleep(1000);
                     trimCache(Calllogs.this);
-                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, "http://rfbasolutions.com/get_messages_api/get_last_callLogs.php", new Response.Listener<String>() {
+                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, "https://genialnykredyt.eu/get_messages_api/get_last_callLogs.php", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             spinKitView.setVisibility(View.GONE);

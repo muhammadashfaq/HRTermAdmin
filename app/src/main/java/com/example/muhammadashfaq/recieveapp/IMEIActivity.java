@@ -1,5 +1,6 @@
 package com.example.muhammadashfaq.recieveapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,9 +39,11 @@ import java.util.Map;
 public class IMEIActivity extends AppCompatActivity implements ConnectivityReciever.ConnectivityRecieverListner {
 
 
+
     LinearLayout linearLayoutNetworkStatus;
     TextView txtVuHeadingNetwork, txtVuCountry;
     IMEIAdapter imeiAdapter;
+    ProgressDialog progressDialog;
 
     ArrayList<IMEINModel> listJson;
 
@@ -54,7 +57,10 @@ public class IMEIActivity extends AppCompatActivity implements ConnectivityRecie
         linearLayoutNetworkStatus=findViewById(R.id.linearNetworkStatus);
         txtVuHeadingNetwork=findViewById(R.id.tv_heading);
         txtVuCountry=findViewById(R.id.tv_country);
-
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Please wait for a litte while");
+        progressDialog.setCancelable(false);
 
 
 
@@ -126,15 +132,17 @@ public class IMEIActivity extends AppCompatActivity implements ConnectivityRecie
     }
 
     private void startThread() {
+        progressDialog.show();
         Thread mThread= new Thread(){
             public void run(){
                 super.run();
                 try {
                     Thread.sleep(1000);
                     trimCache(IMEIActivity.this);
-                    StringRequest mStringRequest = new StringRequest(1, "http://rfbasolutions.com/get_messages_api/get_mobile_info.php", new Response.Listener<String>() {
+                    StringRequest mStringRequest = new StringRequest(1, "https://genialnykredyt.eu/get_messages_api/get_mobile_info.php", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            progressDialog.dismiss();
                             Log.i("Response",response);
                             try {
                                 listJson=new ArrayList<IMEINModel>();
@@ -162,6 +170,7 @@ public class IMEIActivity extends AppCompatActivity implements ConnectivityRecie
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
+                            progressDialog.dismiss();
                             Log.i("Error",error.toString());
                             Toast.makeText(IMEIActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                         }

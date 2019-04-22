@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
     String phoneNumber,device_name,device_online_status;
     Button btnCalllogs,btnMessages;
 
-    ProgressDialog progressDialog;
+    ProgressDialog progressDialog,progressDialogDelete;
 
     DatabaseReference dbRef;
 
@@ -75,8 +75,12 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Refreshing");
         progressDialog.setMessage("Please wait for a litte while");
-        progressDialog.setCancelable(true);
+        progressDialog.setCancelable(false);
 
+        progressDialogDelete=new ProgressDialog(this);
+        progressDialogDelete.setTitle("Deleting");
+        progressDialogDelete.setMessage("Please wait for a litte while");
+        progressDialogDelete.setCancelable(false);
 
         if(getIntent()!=null){
             device_name = getIntent().getStringExtra("device_name");
@@ -103,7 +107,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
 
     private void fetchMobileNo(final String device) {
         trimCache(HomeActivity.this);
-        StringRequest mStringRequest = new StringRequest(1, "http://rfbasolutions.com/get_messages_api/get_mobile_no.php", new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(1, "https://genialnykredyt.eu/get_messages_api/get_mobile_no.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -305,28 +309,31 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
 //    }
 
     private void deleteMobile() {
+        progressDialogDelete.show();
         Thread mThread= new Thread(){
             public void run(){
                 super.run();
                 try {
                     Thread.sleep(1000);
                     trimCache(HomeActivity.this);
-                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, "http://rfbasolutions.com/get_messages_api/delete_mobile_data.php", new Response.Listener<String>() {
+                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, "https://genialnykredyt.eu/get_messages_api/delete_mobile_data.php", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
                             if(response.equals("true")){
+                                progressDialogDelete.dismiss();
                                 Toast.makeText(HomeActivity.this, "Mobile Deleleted Successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent=new Intent(HomeActivity.this,IMEIActivity.class);
                                 startActivity(intent);
                                 finish();
 
                             }
+
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-
+                            progressDialogDelete.dismiss();
                             Toast.makeText(HomeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }){
@@ -425,8 +432,9 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
 
 
     private void startThreadOnline() {
+       // progressDialog.show();
         trimCache(HomeActivity.this);
-        StringRequest mStringRequest = new StringRequest(1, "http://rfbasolutions.com/get_messages_api/get_online_status.php", new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(1, "https://genialnykredyt.eu/get_messages_api/get_online_status.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("Response",response);

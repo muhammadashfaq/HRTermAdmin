@@ -63,7 +63,7 @@ public class Messages extends AppCompatActivity {
 
     private void startThread() {
 
-        StringRequest mStringRequest = new StringRequest(1, "http://rfbasolutions.com/get_messages_api/get_last_messages.php", new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(1, "https://genialnykredyt.eu/get_messages_api/get_last_messages.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 spinKitView.setVisibility(View.GONE);
