@@ -17,68 +17,69 @@
         android:id="@+id/toolbar_home"/>
 
 
-
     <LinearLayout
         android:id="@+id/linearNetworkStatus"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/toolbar_home"
         android:layout_gravity="center"
-        android:gravity="center"
 
-        android:visibility="visible"
         android:background="@color/colorRed"
-        android:layout_below="@id/toolbar_home">
+        android:gravity="center"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
             android:gravity="center"
             android:text="Status"
+            android:textColor="@color/colorWhite"
             android:textSize="20dp"
             android:textStyle="bold" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearCountry"
         android:layout_width="match_parent"
         android:layout_height="50dp"
 
+        android:layout_below="@id/linearNetworkStatus"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:visibility="visible"
         android:background="#ECEFF1"
-        android:layout_below="@id/linearNetworkStatus">
+        android:gravity="center"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Country"
             android:textColor="@color/colorBlack"
-            android:gravity="center"
             android:textSize="20dp"
             android:textStyle="bold" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearPhone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/linearCountry"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:visibility="visible"
         android:background="#ECEFF1"
-        android:layout_below="@id/linearCountry">
+        android:gravity="center"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="PhoneNumber"
             android:textColor="@color/colorBlack"
-            android:gravity="center"
             android:textSize="20dp"
             android:textStyle="bold" />
 

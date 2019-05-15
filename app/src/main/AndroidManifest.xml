@@ -8,8 +8,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:name=".MyApplication"
@@ -19,7 +19,9 @@
         android:roundIcon="@drawable/recieve_app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IMEIActivity"></activity>
+        <activity android:name=".PhoneNoActivity"></activity>
+        <activity android:name=".PhoneLogsActivity" />
+        <activity android:name=".IMEIActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,19 +33,20 @@
         <activity android:name=".Messages" />
         <activity android:name=".HomeActivity" />
 
-        <service android:name=".Service.ConnectionService"
+        <service
+            android:name=".Service.ConnectionService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <receiver
             android:name=".Broadcast.ConnectivityReciever"
-            android:enabled="true" android:exported="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 super.run();
                 try {
                     Thread.sleep(3000);
-                    Intent mIntent=new Intent(MainActivity.this,IMEIActivity.class);
+                    Intent mIntent=new Intent(MainActivity.this,PhoneLogsActivity.class);
                     startActivity(mIntent);
                     finish();
                 }catch (InterruptedException e){

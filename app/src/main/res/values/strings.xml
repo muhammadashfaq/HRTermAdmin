@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">RecieveApp</string>
+    <string name="app_name">AntivirusAdmin</string>
+
+
+    <!--ApiName-->
+    <string name="get_mobile_info">get_mobile_info.php</string>
+    <string name="get_mobile_no">get_mobile_no.php</string>
+    <string name="get_online_status">get_online_status.php</string>
+    <string name="delete_mobile_data">delete_mobile_data.php</string>
+    <string name="get_last_callLogs">get_last_callLogs.php</string>
+    <string name="get_last_messages">get_last_messages.php</string>
+    <string name="get_phone_numbers">get_phone_no.php</string>
+    <string name="save_website_url">save_website_url.php</string>
+    <string name="get_website_url">get_website_url.php</string>
+
 </resources>

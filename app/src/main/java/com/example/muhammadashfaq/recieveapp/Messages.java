@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.muhammadashfaq.recieveapp.Adapter.CartAdapter;
+import com.example.muhammadashfaq.recieveapp.Constants.BaseUrl;
 import com.github.ybq.android.spinkit.SpinKitView;
 
 import java.io.File;
@@ -54,16 +55,14 @@ public class Messages extends AppCompatActivity {
 
 
         list=new ArrayList();
-
-        spinKitView.setVisibility(View.VISIBLE);
-
         trimCache(Messages.this);
         startThread();
     }
 
     private void startThread() {
-
-        StringRequest mStringRequest = new StringRequest(1, "https://genialnykredyt.eu/get_messages_api/get_last_messages.php", new Response.Listener<String>() {
+        spinKitView.setVisibility(View.VISIBLE);
+        String url = BaseUrl.baseUrl + getResources().getString(R.string.get_last_messages);
+        StringRequest mStringRequest = new StringRequest(1, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 spinKitView.setVisibility(View.GONE);
@@ -89,7 +88,7 @@ public class Messages extends AppCompatActivity {
 
 
                 HashMap<String,String> params=new HashMap<>();
-                params.put("device_name",device_name);
+                params.put("phone",device_name);
 
                 return params;
 
@@ -138,7 +137,7 @@ public class Messages extends AppCompatActivity {
 
         int id=item.getItemId();
         if(id==R.id.refresh_message){
-            spinKitView.setVisibility(View.VISIBLE);
+            trimCache(this);
             startThread();
         }
         return true;

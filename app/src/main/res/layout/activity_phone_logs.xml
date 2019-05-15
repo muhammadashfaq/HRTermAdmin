@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IMEIActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back"/>
+
+
+    <LinearLayout
+        android:id="@+id/linear_Layout_Buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_margin="50dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/calllogs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="See Logs"
+            android:textSize="18sp"
+            android:onClick="btnSeeLogs"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_shape"/>
+
+        <Button
+            android:id="@+id/btn_messages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="See Phone Numbers"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:onClick="btnSeePhones"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_shape"
+            android:layout_marginTop="20dp" />
+
+
+        <Button
+            android:id="@+id/btn_admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add New Website Url"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:onClick="btnAddWebsiteUrl"
+            android:padding="10dp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_shape"
+            android:layout_marginTop="20dp"
+            tools:ignore="OnClick" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_Layout_add_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add URL"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            />
+
+        <EditText
+            android:id="@+id/edt_txt_add_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:hint="URL"
+            android:textColorHint="@color/colorWhite"
+            android:textColor="@color/colorWhite"
+            />
+        <Button
+            android:id="@+id/bt_save_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save URL"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_shape"
+            android:layout_marginTop="20dp"
+            tools:ignore="OnClick" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.example.muhammadashfaq.recieveapp.Adapter.CartAdapter;
+import com.example.muhammadashfaq.recieveapp.Constants.BaseUrl;
 import com.github.ybq.android.spinkit.SpinKitView;
 
 import java.io.File;
@@ -67,7 +68,8 @@ public class Calllogs extends AppCompatActivity {
                 try {
                     Thread.sleep(1000);
                     trimCache(Calllogs.this);
-                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, "https://genialnykredyt.eu/get_messages_api/get_last_callLogs.php", new Response.Listener<String>() {
+                    String url = BaseUrl.baseUrl + getResources().getString(R.string.get_last_callLogs);
+                    StringRequest mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             spinKitView.setVisibility(View.GONE);
@@ -90,7 +92,7 @@ public class Calllogs extends AppCompatActivity {
 
                             HashMap<String,String> params=new HashMap<>();
                             Log.i("device",device_name);
-                            params.put("device_name",device_name);
+                            params.put("phone",device_name);
 
                             return params;
 
